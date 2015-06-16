@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, PogoActivity!</string>
+    <string name="app_name">Pogo</string>
+    <string name="pass_tip">Pass: 0</string>
+    <string name="fail_tip">Fail: 0</string>
+    
+</resources>
