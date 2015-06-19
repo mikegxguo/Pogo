@@ -21,7 +21,7 @@ public class SerialPortUtil {
     private InputStream mInputStream;
     private ReadThread mReadThread;
     private String path = "/dev/ttyO3"; //cradle
-    private int baudrate = 9600;//115200;
+    private int baudrate = 115200;
     private static SerialPortUtil portUtil;
     private OnDataReceiveListener onDataReceiveListener = null;
     private boolean isStop = false;
@@ -116,7 +116,7 @@ public class SerialPortUtil {
                     byte[] buffer = new byte[512];
                     size = mInputStream.read(buffer);
                     if (size > 0) {
-                        //Log.d(TAG, "length is:" + size + ", data is:" + new String(buffer, 0, size));
+                        Log.d(TAG, "length is:" + size + ", data is:" + new String(buffer, 0, size));
                         if (null != onDataReceiveListener) {
                             onDataReceiveListener.onDataReceive(buffer, size);
                         }
@@ -125,7 +125,7 @@ public class SerialPortUtil {
                             onDataReceiveListener.onDataReceive(buffer, 0);
                         }
                     }
-                    Thread.sleep(100);
+                    Thread.sleep(1000);
                     // for test
                     sendCmds(strTest);
                 } catch (Exception e) {

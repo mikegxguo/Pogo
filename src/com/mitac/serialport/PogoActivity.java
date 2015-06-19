@@ -22,7 +22,7 @@ public class PogoActivity extends Activity implements OnDataReceiveListener {
 
     private static final int PASS_MSG = 0x1234;
     private static final int FAIL_MSG = 0x1235;
-    private  String strTest = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456";
+    private  CharSequence strTest = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456";
 
     private Handler hRefresh = new Handler() {
         @Override
@@ -69,13 +69,13 @@ public class PogoActivity extends Activity implements OnDataReceiveListener {
             cntFail = cntFail + 1;
             hRefresh.sendEmptyMessage(FAIL_MSG);
         } else if (size > 0) {
-            if (buffer.equals(strTest)) {
+            String str = new String(buffer, 0, size);
+            if (str.contains(strTest)) {
                 cntPass = cntPass + 1;
                 hRefresh.sendEmptyMessage(PASS_MSG);
            } else {
                 cntFail = cntFail + 1;
                 hRefresh.sendEmptyMessage(FAIL_MSG);
-                Log.d(TAG, "FAIL: "+buffer);
             }
         }
     }
