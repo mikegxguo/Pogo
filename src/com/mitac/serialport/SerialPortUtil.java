@@ -10,7 +10,7 @@ import java.io.PrintWriter;
 import android.util.Log;
 
 /**
-  * 
+ * 
  * @author mike
  * 
  */
@@ -20,19 +20,18 @@ public class SerialPortUtil {
     private OutputStream mOutputStream;
     private InputStream mInputStream;
     private ReadThread mReadThread;
-    private String path = "/dev/ttyO3"; //cradle
+    private String path = "/dev/ttyO3"; // cradle
     private int baudrate = 115200;
     private static SerialPortUtil portUtil;
     private OnDataReceiveListener onDataReceiveListener = null;
     private boolean isStop = false;
-    private  String strTest = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456";
+    private String strTest = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456";
 
     /*
-    public interface OnDataReceiveListener {
-        public void onDataReceive(byte[] buffer, int size);
-    }
-*/
-    
+     * public interface OnDataReceiveListener { public void onDataReceive(byte[]
+     * buffer, int size); }
+     */
+
     public void setOnDataReceiveListener(
             OnDataReceiveListener dataReceiveListener) {
         onDataReceiveListener = dataReceiveListener;
@@ -45,7 +44,6 @@ public class SerialPortUtil {
         }
         return portUtil;
     }
-
 
     public void onCreate() {
         try {
@@ -116,16 +114,19 @@ public class SerialPortUtil {
                     byte[] buffer = new byte[512];
                     size = mInputStream.read(buffer);
                     if (size > 0) {
-                        Log.d(TAG, "length is:" + size + ", data is:" + new String(buffer, 0, size));
+                        Log.d(TAG, "length is:" + size + ", data is:"
+                                + new String(buffer, 0, size));
                         if (null != onDataReceiveListener) {
                             onDataReceiveListener.onDataReceive(buffer, size);
                         }
-                    } else if(size == 0) {
+                    } else if (size == 0) {
                         if (null != onDataReceiveListener) {
                             onDataReceiveListener.onDataReceive(buffer, 0);
                         }
                     }
-                    Thread.sleep(1000);
+                    if (!isStop) {
+                        Thread.sleep(1000);
+                    }
                     // for test
                     sendCmds(strTest);
                 } catch (Exception e) {
