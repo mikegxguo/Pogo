@@ -70,6 +70,7 @@ public class SerialPortUtil {
         try {
             if (mOutputStream != null) {
                 mOutputStream.write(mBuffer);
+                Log.d(TAG, "Send: " + cmd);
             } else {
                 result = false;
             }
@@ -111,11 +112,16 @@ public class SerialPortUtil {
                 try {
                     if (mInputStream == null)
                         return;
+                    // for test
+                    sendCmds(strTest);
+                    if (!isStop) {
+                        Thread.sleep(100);
+                    }
+
                     byte[] buffer = new byte[512];
                     size = mInputStream.read(buffer);
                     if (size > 0) {
-                        Log.d(TAG, "length is:" + size + ", data is:"
-                                + new String(buffer, 0, size));
+                        Log.d(TAG, "Recv: " + new String(buffer, 0, size));
                         if (null != onDataReceiveListener) {
                             onDataReceiveListener.onDataReceive(buffer, size);
                         }
@@ -124,11 +130,6 @@ public class SerialPortUtil {
                             onDataReceiveListener.onDataReceive(buffer, 0);
                         }
                     }
-                    if (!isStop) {
-                        Thread.sleep(1000);
-                    }
-                    // for test
-                    sendCmds(strTest);
                 } catch (Exception e) {
                     e.printStackTrace();
                     return;
