@@ -8,9 +8,13 @@ import android.widget.TextView;
 import android.widget.LinearLayout;
 import android.os.Message;
 import android.os.Handler;
+import android.view.Menu;
+import android.view.MenuItem;
+
 
 public class PogoActivity extends Activity implements OnDataReceiveListener {
     private static String TAG = "PogoActivity";
+    private static String VERSION = "1.1.0.0      2015/6/25 10:32";
     /** Called when the activity is first created. */
     SerialPortUtil mSerialPortUtil;
 
@@ -56,10 +60,11 @@ public class PogoActivity extends Activity implements OnDataReceiveListener {
         mSerialPortUtil.onCreate();
 
         Log.d(TAG, "onCreate");
+        Log.d(TAG, VERSION);
         // mSerialPortUtil.sendCmds("mike");
         mSerialPortUtil.setOnDataReceiveListener(this);
     }
-    
+
     @Override
     public void onResume() {
         super.onResume();
@@ -77,7 +82,7 @@ public class PogoActivity extends Activity implements OnDataReceiveListener {
     public void onDataReceive(byte[] buffer, int size) {
         if (size == 0) {
             cntFail = cntFail + 1;
-         } else if (size > 0) {
+        } else if (size > 0) {
             String str = new String(buffer, 0, size);
             if (str.contains(strTest)) {
                 cntPass = cntPass + 1;
@@ -86,6 +91,35 @@ public class PogoActivity extends Activity implements OnDataReceiveListener {
             }
         }
         hRefresh.sendEmptyMessage(MSG_REFRESH);
+    }
+
+    @Override
+    public void openOptionsMenu() {
+        // TODO Auto-generated method stub
+        super.openOptionsMenu();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // TODO Auto-generated method stub
+        super.onCreateOptionsMenu(menu);
+        int group1 = 0;
+        menu.add(group1, 1, 0, VERSION);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // TODO Auto-generated method stub
+        switch (item.getItemId()) {
+        case 1:
+            Log.i(TAG, "menu item 1");
+            break;
+        default:
+            return super.onOptionsItemSelected(item);
+        }
+        return true;
     }
 
 }
