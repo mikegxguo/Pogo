@@ -6,4 +6,16 @@
     <string name="pass_tip">Pass: 0</string>
     <string name="fail_tip">Fail: 0</string>
     
+    <string name="attach_tip">Connect: 0</string>
+    <string name="dettach_tip">Disconnect: 0</string>
+    
+     <string name="batt_ac_tip">Power source(AC): 0</string>
+    <string name="batt_usb_tip">Power source(USB): 0</string>
+    <string name="batt_batt_tip">Power source(battery): 0</string>
+    
+     <string name="urat_test">Please connect TX/RX in the cradle side firstly,\n then send string to TX,\n and sleep 100ms, \n try to receive the data from RX</string>
+    <string name="det_test">Receive the interrupt from the CRADLE_DET pin,\n When cradle detach from device or attach itself to device,\n this interrupt will take place</string>
+    <string name="batt_test">Receive the intent from battery service,\n then tell user current power source</string>
+    
+    
 </resources>

@@ -1,24 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/background"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="10dip"
+    android:paddingTop="10dip" >
 
-       <TextView
-        android:id="@+id/pass"
+    <LinearLayout
+        android:id="@android:id/widget_frame"
+        android:layout_width="match_parent"
+        android:layout_height="2dip"
+        android:background="#808080"
+        android:gravity="center_vertical"
+        android:orientation="vertical" 
+        android:paddingBottom="10dip"
+        android:paddingTop="10dip"/>
+
+    <LinearLayout
+        android:id="@+id/background_urat"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/pass_tip"
-        android:textSize="35sp"/>
-    
-    
-    <TextView
-        android:id="@+id/fail"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/urat_test"
+            android:textSize="18sp" />
+        
+        <TextView
+            android:id="@+id/pass"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/pass_tip"
+            android:textSize="35sp" />
+
+        <TextView
+            android:id="@+id/fail"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/fail_tip"
+            android:textSize="35sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@android:id/widget_frame"
+        android:layout_width="match_parent"
+        android:layout_height="2dip"
+        android:background="#808080"
+        android:gravity="center_vertical"
+        android:orientation="vertical" 
+        android:paddingBottom="10dip"
+        android:paddingTop="10dip"/>
+
+    <LinearLayout
+        android:id="@+id/background_det"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/fail_tip"
-        android:textSize="35sp"/>
+        android:orientation="vertical" >
+        
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/det_test"
+            android:textSize="18sp" />
+        
+        <TextView
+            android:id="@+id/attach"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/attach_tip"
+            android:textSize="35sp" />
+
+        <TextView
+            android:id="@+id/dettach"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/dettach_tip"
+            android:textSize="35sp" />
+    </LinearLayout>
     
+    <LinearLayout
+        android:id="@android:id/widget_frame"
+        android:layout_width="match_parent"
+        android:layout_height="2dip"
+        android:background="#808080"
+        android:gravity="center_vertical"
+        android:orientation="vertical" 
+        android:paddingBottom="10dip"
+        android:paddingTop="10dip"/>
+    
+    <LinearLayout
+        android:id="@+id/background_batt"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+        
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/batt_test"
+            android:textSize="18sp" />
+        
+        <TextView
+            android:id="@+id/batt_ac"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/batt_ac_tip"
+            android:textSize="35sp" />
+
+        <TextView
+            android:id="@+id/batt_usb"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/batt_usb_tip"
+            android:textSize="35sp" />
+
+        <TextView
+            android:id="@+id/batt_batt"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/batt_batt_tip"
+            android:textSize="35sp" />
+        </LinearLayout>
+    
+    <LinearLayout
+        android:id="@android:id/widget_frame"
+        android:layout_width="match_parent"
+        android:layout_height="2dip"
+        android:background="#808080"
+        android:gravity="center_vertical"
+        android:orientation="vertical" 
+        android:paddingBottom="10dip"
+        android:paddingTop="10dip"/>
+
 
 </LinearLayout>

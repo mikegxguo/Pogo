@@ -9,10 +9,11 @@ LOCAL_SRC_FILES := $(call all-java-files-under, src)
 LOCAL_PACKAGE_NAME := Pogo
 LOCAL_CERTIFICATE := platform
 
-LOCAL_JNI_SHARE_LIBRARIES := libSerialPort
+LOCAL_JNI_SHARED_LIBRARIES := libSerialPort
 LOCAL_STATIC_JAVA_LIBRARIES :=
 
 #LOCAL_PROGUARD_FLAG_FILES := proguard.flags
+
 
 include $(BUILD_PACKAGE)
 
