@@ -52,6 +52,7 @@ public class PogoActivity extends Activity implements OnDataReceiveListener {
     
     private IntentFilter mIntentFilter;
     private static int mPlugged = 0;
+    private boolean mDetach = false;
 
 
     private Handler hRefresh = new Handler() {
@@ -87,6 +88,9 @@ public class PogoActivity extends Activity implements OnDataReceiveListener {
                 }
                 if (tipBATT != null) {
                     tipBATT.setText("Power source(Battery): " + cntBATT);
+                }
+                if (mDetach && tipBackBatt != null) {
+                    tipBackBatt.setBackgroundColor(Color.RED);
                 }
                 break;
             default:
@@ -145,6 +149,9 @@ public class PogoActivity extends Activity implements OnDataReceiveListener {
 //            String technology = intent.getStringExtra("technology");
             
             if(mPlugged != plugged) {
+                if(!mDetach && (cntAC>0 || cntUSB>0)) {
+                    mDetach = true;
+                }
                 mPlugged = plugged;
                 if(mPlugged == BatteryManager.BATTERY_PLUGGED_AC) {
                     cntAC += 1;
@@ -268,7 +275,7 @@ public class PogoActivity extends Activity implements OnDataReceiveListener {
         tipAC = (TextView) findViewById(R.id.batt_ac);
         tipUSB = (TextView) findViewById(R.id.batt_usb);
         tipBATT = (TextView) findViewById(R.id.batt_batt);
-        tipBackDet = (LinearLayout) findViewById(R.id.background_batt);
+        tipBackBatt = (LinearLayout) findViewById(R.id.background_batt);
 
         mSerialPortUtil = new SerialPortUtil();
         mSerialPortUtil.onCreate();
