@@ -25,9 +25,9 @@ import android.view.View;
 
 public class PogoActivity extends Activity implements OnDataReceiveListener {
     private static String TAG = "PogoActivity";
-    private static String VERSION = "1.1.0.3      2016/2/18 15:42";
+    private static String VERSION = "1.1.0.4      2016/5/9 15:17";
     /** Called when the activity is first created. */
-    //SerialPortUtil mSerialPortUtil;
+    SerialPortUtil mSerialPortUtil;
 
     TextView tipPass;
     TextView tipFail;
@@ -268,7 +268,7 @@ public class PogoActivity extends Activity implements OnDataReceiveListener {
         tipPass = (TextView) findViewById(R.id.pass);
         tipFail = (TextView) findViewById(R.id.fail);
         tipBackUrat = (LinearLayout) findViewById(R.id.background_urat);
-        tipBackUrat.setVisibility(View.GONE); //Aiken requested on 2016/2/18
+        //tipBackUrat.setVisibility(View.GONE); //Aiken requested on 2016/2/18
         
         tipAttach = (TextView) findViewById(R.id.attach);
         tipDettach = (TextView) findViewById(R.id.dettach);
@@ -279,13 +279,13 @@ public class PogoActivity extends Activity implements OnDataReceiveListener {
         tipBATT = (TextView) findViewById(R.id.batt_batt);
         tipBackBatt = (LinearLayout) findViewById(R.id.background_batt);
 
-        //mSerialPortUtil = new SerialPortUtil();
-        //mSerialPortUtil.onCreate();
+        mSerialPortUtil = new SerialPortUtil();
+        mSerialPortUtil.onCreate();
 
         Log.d(TAG, "onCreate");
         Log.d(TAG, VERSION);
-        // mSerialPortUtil.sendCmds("mike");
-        //mSerialPortUtil.setOnDataReceiveListener(this);
+        mSerialPortUtil.sendCmds("mike");
+        mSerialPortUtil.setOnDataReceiveListener(this);
         
         m_cradleObserver.startObserving("SUBSYSTEM=switch");
         //ORV cradle has no such pin(DETECT) between cradle and CPU
@@ -304,7 +304,7 @@ public class PogoActivity extends Activity implements OnDataReceiveListener {
     @Override
     protected void onDestroy() {
         Log.d(TAG, "onDestroy");
-        //mSerialPortUtil.closeSerialPort();
+        mSerialPortUtil.closeSerialPort();
         m_cradleObserver.stopObserving();
         unregisterReceiver(mIntentReceiver);
         super.onDestroy();
